@@ -1,52 +1,58 @@
-import java.lang.Math;
 import java.util.Arrays;
 import java.util.Random;
+import java.lang.Math;
 
-
-public class Main {
+// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
+// then press Enter. You can now see whitespace characters in your code.
+public class FirstLab {
     public static void main(String[] args) {
-        int[] c = new int[15];
-        int n = 16;
+        long[] c = new long[10];
+        int k = 4;
         for (int i = 0; i < c.length; i++) {
-            c[i] = n;
-            n -= 1;
-
+            c[i] = k;
+            k += 2;
         }
-//System.out.println("\nc:");
-//    for (int i=0; i<15; i++)
-//System.out.println(c[i]);
 
-        float[] x = new float[16];
-        Random rnd = new Random();
-        float min = -14.0f;
-        float max = 8.0f;
+        double[] x = new double[14];
+        Random r = new Random();
+        double min = -12.0, max = 8.0;
+
         for (int i = 0; i < x.length; i++) {
-            x[i] = min + rnd.nextFloat() * (max - min);
-
-
+            x[i] = min + (max - min) * r.nextDouble();
         }
-//System.out.println("\nx:");
-//    for (int i=0; i<16; i++)
-//System.out.println(x[i]);
 
-        double[][] arr = new double[15][16];
+        double[][] array = new double[10][14];
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < x.length; j++) {
-                if (c[i] == 14) {
-                    arr[i][j] = Math.pow(2 * Math.log(Math.abs(x[j])) / 3, Math.asin((x[j] - 3) / 22));
-                } else if (Arrays.asList(4, 5, 6, 8, 11, 13, 16).contains(c[i])) {
-                    arr[i][j] = Math.pow(2 / (Math.pow(2 * (Math.pow(x[j] / (2 + x[j]), 3) - 1), 2)), 3);
+                if (c[i] == 12) {
+                    array[i][j] = Math.exp(
+                            Math.log(Math.pow(
+                                    Math.PI * (5 + Math.abs(x[j])), x[j])
+                            )
+                    );
+                } else if (Arrays.asList(8, 10, 14, 18, 22).contains(c[i])) {
+                    array[i][j] = Math.tan(
+                            Math.tan(
+                                    Math.pow(x[j], (x[j] - 0.5) / x[j])
+                            )
+                    );
                 } else {
-                    arr[i][j] = Math.asin(Math.pow(Math.exp(Math.cbrt(Math.pow(-1 * (Math.abs(x[j]) * (5 + Math.abs(x[j]))), x[j]))), 2));
+                    array[i][j] = 0.5 / Math.asin(
+                            Math.sin(
+                                    Math.cbrt(
+                                            Math.pow((2.0 / 3.0) * x[j], 2)
+                                    )
+                            )
+                    );
                 }
             }
         }
+
         for (int i = 0; i < c.length; i++) {
             for (int j = 0; j < x.length; j++) {
-                System.out.printf("%.4f\", arr[i][j]);
+                System.out.printf("%.4f\t", array[i][j]);
             }
-            System.out.println(c[i]);
+            System.out.println();
         }
-
     }
 }
